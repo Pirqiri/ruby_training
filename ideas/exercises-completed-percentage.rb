@@ -1,6 +1,9 @@
 # Define the total number of exercises in the series.
 total_number_of_exercises = 52
 
+time = Time.new
+file = open("progress_log.txt", "a")
+
 # Define the directory path where exercise file are located.
 directory_path = "../exercises/*"
 
@@ -14,4 +17,6 @@ exercises_completed = files_list.select {|file| file.match(/ex[0-9]+[.]/)}.count
 advance_percentage = (exercises_completed.to_f / total_number_of_exercises.to_f).round(2) * 100
 
 # Display the calculated advance percentage.
-puts "#{advance_percentage}%"
+puts "#{advance_percentage}%,#{time.strftime("%H:%M,%d-%m-%Y")}"
+file.write("#{advance_percentage}%,#{time.strftime("%H:%M,%d-%m-%Y")}\n")
+file.close
